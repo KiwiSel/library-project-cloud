@@ -1,0 +1,17 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE books (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'available'
+);
+
+CREATE TABLE borrowings (
+    book_id INTEGER PRIMARY KEY REFERENCES books(id),
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    borrowed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
