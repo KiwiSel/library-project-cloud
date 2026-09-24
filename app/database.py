@@ -4,8 +4,9 @@ import psycopg2
 def get_connection():
     connection = psycopg2.connect(
         dbname="library_db",
-        user=os.getenv("DB_USER"),
-        host="localhost",
+        user="library_user",
+        password="library_password",
+        host="db",
         port="5432"
     )
 
