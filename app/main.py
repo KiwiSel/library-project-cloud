@@ -2,8 +2,17 @@ from fastapi import FastAPI
 from app.database import get_connection
 from app.schemas import BookCreate, UserCreate, BorrowingCreate
 
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
+
+@app.get("/", include_in_schema=False)
+def frontend():
+    return FileResponse("frontend/index.html")
 
 @app.get("/")
 def root():

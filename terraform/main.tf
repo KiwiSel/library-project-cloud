@@ -76,3 +76,47 @@ resource "aws_subnet" "private_b" {
     Name = "library-private-subnet-b"
   }
 }
+
+resource "aws_db_subnet_group" "library" {
+  name = "library-db-subnet-group"
+
+  subnet_ids = [
+    aws_subnet.private.id,
+    aws_subnet.private_b.id
+  ]
+
+  tags = {
+    Name = "library-db-subnet-group"
+  }
+}
+
+resource "aws_security_group" "rds" {
+  name        = "library-rds-security-group"
+  description = "Security group for the library RDS database"
+  vpc_id      = aws_vpc.library.id
+
+  tags = {
+    Name = "library-rds-security-group"
+  }
+}
+
+resource "aws_security_group" "app" {
+  name        = "library-app-security-group"
+  description = "Security group for the library application"
+  vpc_id      = aws_vpc.library.id
+
+  tags = {
+    Name = "library-app-security-group"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "rds_from_app" {
+  security_group_id            = aws_security_group.rds.id
+  referenced_security_group_id = aws_security_group.app.id
+
+  from_port   = 5432
+  to_port     = 5432
+  ip_protocol = "tcp"
+
+  description = "Allow PostgreSQL traffic from the library application"
+}

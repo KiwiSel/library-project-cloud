@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <h1>Kiwi's Library</h1>
+
+    <section>
+        <h2>Books</h2>
+
+        <form id="book-form">
+            <input id="book-title" type="text" placeholder="Title" required>
+            <input id="book-author" type="text" placeholder="Author" required>
+            <button type="submit">Add Book</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="books"></tbody>
+        </table>
+    </section>
+
+
+    <section>
+        <h2>Users</h2>
+
+        <form id="user-form">
+            <input id="username" type="text" placeholder="Username" required>
+            <button type="submit">Add User</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody id="users"></tbody>
+        </table>
+    </section>
+
+
+
+    <section>
+        <h2>Borrow a Book</h2>
+
+        <form id="borrowing-form">
+            <input id="user-id" type="number" placeholder="User ID" required>
+            <input id="book-id" type="number" placeholder="Book ID" required>
+            <button type="submit">Borrow Book</button>
+        </form>
+    </section>
+
+
+    <section>
+        <h2>Current Borrowings</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Book ID</th>
+                    <th>Borrowed At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="borrowings"></tbody>
+        </table>
+    </section>
+
+    <script src="/static/script.js"></script>
+
+</body>
+</html>
