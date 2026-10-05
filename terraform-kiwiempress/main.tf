@@ -12,10 +12,6 @@ provider "aws" {
 }
 
 
-# --------------------------------------------------
-# Default VPC
-# --------------------------------------------------
-
 data "aws_vpc" "default" {
   default = true
 }
@@ -27,10 +23,6 @@ data "aws_subnets" "default" {
   }
 }
 
-
-# --------------------------------------------------
-# Security groups
-# --------------------------------------------------
 
 resource "aws_security_group" "app" {
   name        = "library-app-security-group"
@@ -77,10 +69,6 @@ resource "aws_security_group" "rds" {
 }
 
 
-# --------------------------------------------------
-# RDS PostgreSQL
-# --------------------------------------------------
-
 resource "aws_db_instance" "library" {
   identifier = "library-postgres"
 
@@ -112,10 +100,6 @@ resource "aws_db_instance" "library" {
 }
 
 
-# --------------------------------------------------
-# ECR
-# --------------------------------------------------
-
 resource "aws_ecr_repository" "library" {
   name = "library-api"
 
@@ -131,10 +115,6 @@ resource "aws_ecr_repository" "library" {
 }
 
 
-# --------------------------------------------------
-# ECS
-# --------------------------------------------------
-
 resource "aws_ecs_cluster" "library" {
   name = "library-cluster"
 
@@ -144,9 +124,6 @@ resource "aws_ecs_cluster" "library" {
 }
 
 
-# --------------------------------------------------
-# ECS execution role
-# --------------------------------------------------
 
 resource "aws_iam_role" "ecs_execution" {
   name = "library-ecs-execution-role-2"
@@ -176,10 +153,6 @@ resource "aws_iam_role_policy_attachment" "ecs_execution" {
 }
 
 
-# --------------------------------------------------
-# CloudWatch logs
-# --------------------------------------------------
-
 resource "aws_cloudwatch_log_group" "library" {
   name = "/ecs/library-api"
 
@@ -187,9 +160,6 @@ resource "aws_cloudwatch_log_group" "library" {
 }
 
 
-# --------------------------------------------------
-# ECS task definition
-# --------------------------------------------------
 
 resource "aws_ecs_task_definition" "library" {
   family = "library-api"
