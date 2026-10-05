@@ -6,10 +6,10 @@ __pycache__/
 
 
 # Terraform
-terraform/.terraform/
-terraform/*.tfstate
-terraform/*.tfstate.*
-terraform/crash.log
-terraform/crash.*.log
-terraform/*.tfvars
-terraform/*.tfvars.json
+terraform-kiwiempress/.terraform/
+terraform-kiwiempress/*.tfstate
+terraform-kiwiempress/*.tfstate.*
+terraform-kiwiempress/crash.log
+terraform-kiwiempress/crash.*.log
+terraform-kiwiempress/*.tfvars
+terraform-kiwiempress/*.tfvars.json

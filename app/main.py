@@ -1,9 +1,13 @@
 from fastapi import FastAPI
-from app.database import get_connection
+from app.database import get_connection, initialize_database
 from app.schemas import BookCreate, UserCreate, BorrowingCreate
 
 app = FastAPI()
 app.frontend("/", directory="frontend")
+
+@app.on_event("startup")
+def startup():
+    initialize_database()
 
 @app.get("/books")
 def get_books():
